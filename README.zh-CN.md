@@ -1,13 +1,13 @@
 # MCP 文档阅读器
 
-模型上下文协议（MCP）服务器提供读取多种文档类型的工具，包括 DOCX、PDF、Excel 和 TXT。
+该工具基于 MCP 协议开发，支持 Excel（XLSX/XLS）、DOCX、PDF、TXT 等多种主流格式，让AI智能体真正 “读懂” 你的文档，现已成功在Trae IDE测试运行。
 
 ## 安装
 
 ### 前提条件
 
 - Python 3.8 或更高版本
-- 支持 MCP 的 AI 工具，如 Trae Desktop
+- 支持 MCP 的 AI 工具，如 Trae IDE
 
 ### 安装步骤
 
@@ -19,7 +19,7 @@
 
 ## 配置
 
-将以下内容添加到 Trae 的 config.json 中：
+将以下内容添加到 Trae IDE的 config.json 中：
 
 ```json
 {

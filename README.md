@@ -1,13 +1,13 @@
 # MCP Enabled Document Reader
 
-Model Context Protocol (MCP) server exposes tools to read multiple document types including DOCX, PDF, Excel, and TXT.
+Model Context Protocol (MCP) server exposes tools to read multiple document types including DOCX, PDF, Excel, and TXT. It has been successfully tested and run in Trae IDE.
 
 ## Installation
 
 ### Prerequisites
 
 - Python 3.8 or higher
-- An MCP-enabled AI tool like Claude Desktop
+- An MCP-enabled AI tool like Trae IDE
 
 ### Installation Steps
 
