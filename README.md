@@ -2,6 +2,7 @@
 
 This tool is built on the Model Context Protocol (MCP) and supports multiple mainstream formats including Excel (XLSX/XLS), DOCX, PDF, and TXT, allowing AI agents to truly "read" your documents. It has been successfully tested and run in Trae IDE.
 
+GitHub Repository: [https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
 Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
 
 ## Installation
@@ -23,6 +24,7 @@ Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.c
 
 Add the following to your Trae IDE's config.json:
 
+### Option 1: Using GitHub repository (Recommended)
 ```json
 {
     "mcpServers": {
@@ -31,6 +33,22 @@ Add the following to your Trae IDE's config.json:
             "args": [
                 "--from",
                 "git+https://github.com/xt765/mcp_documents_reader",
+                "mcp_documents_reader"
+            ]
+        }
+    }
+}
+```
+
+### Option 2: Using Gitee repository
+```json
+{
+    "mcpServers": {
+        "mcp-document-reader": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://gitee.com/xt765/mcp_documents_reader",
                 "mcp_documents_reader"
             ]
         }

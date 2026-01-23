@@ -2,6 +2,7 @@
 
 该工具基于 MCP 协议开发，支持 Excel（XLSX/XLS）、DOCX、PDF、TXT 等多种主流格式，让AI智能体真正 “读懂” 你的文档，现已成功在Trae IDE测试运行。
 
+项目GitHub代码仓库：[https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
 项目Gitee代码仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
 
 ## 安装
@@ -23,6 +24,7 @@
 
 将以下内容添加到 Trae IDE的 config.json 中：
 
+### 选项1：使用GitHub仓库（推荐）
 ```json
 {
     "mcpServers": {
@@ -31,6 +33,22 @@
             "args": [
                 "--from",
                 "git+https://github.com/xt765/mcp_documents_reader",
+                "mcp_documents_reader"
+            ]
+        }
+    }
+}
+```
+
+### 选项2：使用Gitee仓库
+```json
+{
+    "mcpServers": {
+        "mcp-document-reader": {
+            "command": "uvx",
+            "args": [
+                "--from",
+                "git+https://gitee.com/xt765/mcp_documents_reader",
                 "mcp_documents_reader"
             ]
         }
