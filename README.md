@@ -1,6 +1,8 @@
 # MCP Enabled Document Reader
 
-Model Context Protocol (MCP) server exposes tools to read multiple document types including DOCX, PDF, Excel, and TXT. It has been successfully tested and run in Trae IDE.
+This tool is built on the Model Context Protocol (MCP) and supports multiple mainstream formats including Excel (XLSX/XLS), DOCX, PDF, and TXT, allowing AI agents to truly "read" your documents. It has been successfully tested and run in Trae IDE.
+
+Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
 
 ## Installation
 
@@ -19,7 +21,7 @@ Model Context Protocol (MCP) server exposes tools to read multiple document type
 
 ## Configuration
 
-Add the following to your claude_desktop_config.json:
+Add the following to your Trae IDE's config.json:
 
 ```json
 {

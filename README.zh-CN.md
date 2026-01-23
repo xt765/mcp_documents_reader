@@ -2,6 +2,8 @@
 
 该工具基于 MCP 协议开发，支持 Excel（XLSX/XLS）、DOCX、PDF、TXT 等多种主流格式，让AI智能体真正 “读懂” 你的文档，现已成功在Trae IDE测试运行。
 
+项目Gitee代码仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+
 ## 安装
 
 ### 前提条件
