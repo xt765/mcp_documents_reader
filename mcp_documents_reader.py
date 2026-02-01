@@ -186,55 +186,7 @@ def _get_document_path(ctx, filename: str) -> str:
     return os.path.join(doc_dir, filename)
 
 
-@mcp.tool()
-def read_docx(ctx, filename: str) -> str:
-    """
-    Reads and extracts text from a specified DOCX file.
-    :param ctx: FastMCP context
-    :param filename: Name of the DOCX file to read
-    :return: Extracted text from the DOCX
-    """
-    doc_path = _get_document_path(ctx, filename)
-    
-    if not os.path.exists(doc_path):
-        return f"Error: File '{filename}' not found at {doc_path}."
-    
-    reader = DocxReader()
-    return reader.read(doc_path)
 
-
-@mcp.tool()
-def read_pdf(ctx, filename: str) -> str:
-    """
-    Reads and extracts text from a specified PDF file.
-    :param ctx: FastMCP context
-    :param filename: Name of the PDF file to read
-    :return: Extracted text from the PDF
-    """
-    doc_path = _get_document_path(ctx, filename)
-    
-    if not os.path.exists(doc_path):
-        return f"Error: File '{filename}' not found at {doc_path}."
-    
-    reader = PdfReader()
-    return reader.read(doc_path)
-
-
-@mcp.tool()
-def read_excel(ctx, filename: str) -> str:
-    """
-    Reads and extracts text from a specified Excel file.
-    :param ctx: FastMCP context
-    :param filename: Name of the Excel file to read
-    :return: Extracted text from the Excel file
-    """
-    doc_path = _get_document_path(ctx, filename)
-    
-    if not os.path.exists(doc_path):
-        return f"Error: File '{filename}' not found at {doc_path}."
-    
-    reader = ExcelReader()
-    return reader.read(doc_path)
 
 
 @mcp.tool()

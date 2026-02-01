@@ -86,9 +86,9 @@ Add the following to your Trae IDE's MCP configuration:
 
 ### As an MCP Tool
 
-After configuration, AI assistants can directly call the following tools:
+After configuration, AI assistants can directly call the following tool:
 
-#### 1. read_document (Recommended)
+#### read_document (Recommended)
 Read any supported document type with a unified interface.
 
 ```
@@ -96,34 +96,6 @@ read_document(filename="example.docx")
 read_document(filename="example.pdf")
 read_document(filename="example.xlsx")
 read_document(filename="example.txt")
-```
-
-#### 2. read_docx
-Read a DOCX document.
-
-```
-read_docx(filename="example.docx")
-```
-
-#### 3. read_pdf
-Read a PDF document.
-
-```
-read_pdf(filename="example.pdf")
-```
-
-#### 4. read_excel
-Read an Excel document.
-
-```
-read_excel(filename="example.xlsx")
-```
-
-#### 5. read_text
-Read a text document.
-
-```
-read_text(filename="example.txt")
 ```
 
 ## Tool Interface Details
@@ -136,42 +108,6 @@ Read any supported document type.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | filename | string | ✅ | Document file path, supports absolute or relative paths |
-
-### read_docx
-Read a DOCX document.
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| filename | string | ✅ | DOCX file path |
-
-### read_pdf
-Read a PDF document.
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| filename | string | ✅ | PDF file path |
-
-### read_excel
-Read an Excel document.
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| filename | string | ✅ | Excel file path |
-
-### read_text
-Read a text document.
-
-**Parameters:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| filename | string | ✅ | Text file path |
 
 ## License
 

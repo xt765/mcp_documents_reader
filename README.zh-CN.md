@@ -88,7 +88,7 @@ pip install -e .
 
 配置完成后，AI 助手可以直接调用以下工具：
 
-#### 1. read_document（推荐）
+#### read_document（推荐）
 使用统一接口读取任何支持的文档类型。
 
 ```
@@ -96,34 +96,6 @@ read_document(filename="example.docx")
 read_document(filename="example.pdf")
 read_document(filename="example.xlsx")
 read_document(filename="example.txt")
-```
-
-#### 2. read_docx
-读取 DOCX 文档。
-
-```
-read_docx(filename="example.docx")
-```
-
-#### 3. read_pdf
-读取 PDF 文档。
-
-```
-read_pdf(filename="example.pdf")
-```
-
-#### 4. read_excel
-读取 Excel 文档。
-
-```
-read_excel(filename="example.xlsx")
-```
-
-#### 5. read_text
-读取文本文档。
-
-```
-read_text(filename="example.txt")
 ```
 
 ## 工具接口详情
@@ -136,42 +108,6 @@ read_text(filename="example.txt")
 | 参数 | 类型 | 必填 | 描述 |
 |------|------|------|------|
 | filename | string | ✅ | 文档文件路径，支持绝对路径或相对路径 |
-
-### read_docx
-读取 DOCX 文档。
-
-**参数：**
-
-| 参数 | 类型 | 必填 | 描述 |
-|------|------|------|------|
-| filename | string | ✅ | DOCX 文件路径 |
-
-### read_pdf
-读取 PDF 文档。
-
-**参数：**
-
-| 参数 | 类型 | 必填 | 描述 |
-|------|------|------|------|
-| filename | string | ✅ | PDF 文件路径 |
-
-### read_excel
-读取 Excel 文档。
-
-**参数：**
-
-| 参数 | 类型 | 必填 | 描述 |
-|------|------|------|------|
-| filename | string | ✅ | Excel 文件路径 |
-
-### read_text
-读取文本文档。
-
-**参数：**
-
-| 参数 | 类型 | 必填 | 描述 |
-|------|------|------|------|
-| filename | string | ✅ | 文本文件路径 |
 
 ## 许可证
 
