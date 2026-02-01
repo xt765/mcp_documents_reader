@@ -1,9 +1,26 @@
-# MCP 文档阅读器
+# MCP 文档读取器
 
-该工具基于 MCP 协议开发，支持 Excel（XLSX/XLS）、DOCX、PDF、TXT 等多种主流格式，让AI智能体真正 “读懂” 你的文档，现已成功在Trae IDE测试运行。
+MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
-项目GitHub代码仓库：[https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
-项目Gitee代码仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+GitHub 仓库：[https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
+Gitee 仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+
+## 功能特性
+
+- **多格式支持**：支持 4 种主流文档格式：Excel（XLSX/XLS）、DOCX、PDF 和 TXT
+- **MCP 协议**：符合 MCP 标准，可作为 AI 助手（如 Trae IDE）的工具使用
+- **易于集成**：简单配置即可立即使用
+- **可靠性能**：已在 Trae IDE 中成功测试运行
+- **文件系统支持**：直接从文件系统读取文档
+
+## 支持的格式
+
+| 格式 | 扩展名 | MIME 类型 | 特性 |
+|------|--------|-----------|------|
+| Excel | .xlsx, .xls | application/vnd.openxmlformats-officedocument.spreadsheetml.sheet | 工作表和单元格数据提取 |
+| DOCX | .docx | application/vnd.openxmlformats-officedocument.wordprocessingml.document | 文本和结构提取 |
+| PDF | .pdf | application/pdf | 文本提取 |
+| Text | .txt | text/plain | 纯文本读取 |
 
 ## 安装
 
@@ -14,67 +31,64 @@
 
 ### 安装步骤
 
-1. 克隆或下载此仓库
-2. 安装依赖：
-   ```bash
-   pip install python-docx PyPDF2 openpyxl
-   ```
+```bash
+# 克隆仓库
+git clone https://github.com/xt765/mcp_documents_reader.git
+cd mcp_documents_reader
+
+# 安装依赖
+pip install -e .
+```
 
 ## 配置
 
-将以下内容添加到 Trae IDE的 config.json 中：
+### 在 Trae IDE 中使用
 
-### 选项1：使用GitHub仓库（推荐）
+将以下内容添加到 Trae IDE 的 MCP 配置中：
+
+#### 选项 1：使用 GitHub 仓库（推荐）
 ```json
 {
-    "mcpServers": {
-        "mcp-document-reader": {
-            "command": "uvx",
-            "args": [
-                "--from",
-                "git+https://github.com/xt765/mcp_documents_reader",
-                "mcp_documents_reader"
-            ]
-        }
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/xt765/mcp_documents_reader",
+        "mcp_documents_reader"
+      ]
     }
+  }
 }
 ```
 
-### 选项2：使用Gitee仓库
+#### 选项 2：使用 Gitee 仓库
 ```json
 {
-    "mcpServers": {
-        "mcp-document-reader": {
-            "command": "uvx",
-            "args": [
-                "--from",
-                "git+https://gitee.com/xt765/mcp_documents_reader",
-                "mcp_documents_reader"
-            ]
-        }
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://gitee.com/xt765/mcp_documents_reader",
+        "mcp_documents_reader"
+      ]
     }
+  }
 }
 ```
 
-## 环境变量
+### 环境变量
 
-- `DOCUMENT_DIRECTORY` - 文档存储目录（默认："./documents"）
+- `DOCUMENT_DIRECTORY` - 存储文档的目录（默认："./documents"）
 
 ## 使用方法
 
-### 支持的文档类型
+### 作为 MCP 工具使用
 
-服务器支持读取以下文档类型：
+配置完成后，AI 助手可以直接调用以下工具：
 
-- DOCX
-- PDF
-- Excel（XLSX, XLS）
-- TXT
-
-### 可用工具
-
-#### read_document（推荐）
-
+#### 1. read_document（推荐）
 使用统一接口读取任何支持的文档类型。
 
 ```
@@ -84,29 +98,80 @@ read_document(filename="example.xlsx")
 read_document(filename="example.txt")
 ```
 
-#### read_docx
-
+#### 2. read_docx
 读取 DOCX 文档。
 
 ```
 read_docx(filename="example.docx")
 ```
 
-#### read_pdf
-
+#### 3. read_pdf
 读取 PDF 文档。
 
 ```
 read_pdf(filename="example.pdf")
 ```
 
-#### read_excel
-
+#### 4. read_excel
 读取 Excel 文档。
 
 ```
 read_excel(filename="example.xlsx")
 ```
+
+#### 5. read_text
+读取文本文档。
+
+```
+read_text(filename="example.txt")
+```
+
+## 工具接口详情
+
+### read_document
+读取任何支持的文档类型。
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| filename | string | ✅ | 文档文件路径，支持绝对路径或相对路径 |
+
+### read_docx
+读取 DOCX 文档。
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| filename | string | ✅ | DOCX 文件路径 |
+
+### read_pdf
+读取 PDF 文档。
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| filename | string | ✅ | PDF 文件路径 |
+
+### read_excel
+读取 Excel 文档。
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| filename | string | ✅ | Excel 文件路径 |
+
+### read_text
+读取文本文档。
+
+**参数：**
+
+| 参数 | 类型 | 必填 | 描述 |
+|------|------|------|------|
+| filename | string | ✅ | 文本文件路径 |
 
 ## 许可证
 
