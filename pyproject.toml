@@ -16,6 +16,7 @@ dependencies = [
 ]
 
 [project.scripts]
+mcp-documents-reader = "mcp_documents_reader:main"
 mcp_documents_reader = "mcp_documents_reader:main"
 
 [build-system]

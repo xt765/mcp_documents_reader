@@ -106,7 +106,7 @@ Add the following to your Trae IDE's MCP configuration:
     "mcp-document-reader": {
       "command": "uvx",
       "args": [
-        "mcp-documents-reader"
+        "mcp_documents_reader"
       ]
     }
   }

@@ -106,7 +106,7 @@ pip install mcp-documents-reader
     "mcp-document-reader": {
       "command": "uvx",
       "args": [
-        "mcp-documents-reader"
+        "mcp_documents_reader"
       ]
     }
   }
