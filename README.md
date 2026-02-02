@@ -7,8 +7,8 @@
 [![Gitee Repository](https://img.shields.io/badge/Gitee-mcp_documents_reader-red.svg?style=flat&logo=gitee)](https://gitee.com/xt765/mcp_documents_reader)
 [![GitHub License](https://img.shields.io/github/license/xt765/mcp_documents_reader.svg?style=flat&logo=github)](https://github.com/xt765/mcp_documents_reader/blob/main/LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python)](https://www.python.org/downloads/)
-[![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg)](https://pypi.org/project/mcp-documents-reader/)
-[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
+[![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg?logo=pypi)](https://pypi.org/project/mcp-documents-reader/)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green.svg?logo=mcp)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
