@@ -7,11 +7,15 @@
 [![Gitee Repository](https://img.shields.io/badge/Gitee-mcp_documents_reader-red.svg?style=flat&logo=gitee)](https://gitee.com/xt765/mcp_documents_reader)
 [![GitHub License](https://img.shields.io/github/license/xt765/mcp_documents_reader.svg?style=flat&logo=github)](https://github.com/xt765/mcp_documents_reader/blob/main/LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python)](https://www.python.org/downloads/)
+[![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg)](https://pypi.org/project/mcp-documents-reader/)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
 GitHub Repository: [https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
 Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+PyPI: [https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
+Official Registry: [View on MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 ## Features
 
@@ -39,6 +43,12 @@ Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.c
 
 ### Installation Steps
 
+#### Option 1: Install from PyPI (Recommended)
+```bash
+pip install mcp-documents-reader
+```
+
+#### Option 2: Install from Source
 ```bash
 # Clone the repository
 git clone https://github.com/xt765/mcp_documents_reader.git
@@ -54,7 +64,21 @@ pip install -e .
 
 Add the following to your Trae IDE's MCP configuration:
 
-#### Option 1: Using GitHub repository (Recommended)
+#### Option 1: Using PyPI package (Recommended)
+```json
+{
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "mcp-documents-reader"
+      ]
+    }
+  }
+}
+```
+
+#### Option 2: Using GitHub repository
 ```json
 {
   "mcpServers": {

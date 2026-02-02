@@ -7,11 +7,15 @@
 [![Gitee Repository](https://img.shields.io/badge/Gitee-mcp_documents_reader-red.svg?style=flat&logo=gitee)](https://gitee.com/xt765/mcp_documents_reader)
 [![GitHub License](https://img.shields.io/github/license/xt765/mcp_documents_reader.svg?style=flat&logo=github)](https://github.com/xt765/mcp_documents_reader/blob/main/LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python)](https://www.python.org/downloads/)
+[![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg)](https://pypi.org/project/mcp-documents-reader/)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green.svg)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
 GitHub 仓库：[https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
 Gitee 仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+PyPI：[https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
+官方注册表：[在 MCP Registry 查看](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 ## 功能特性
 
@@ -39,6 +43,12 @@ Gitee 仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/
 
 ### 安装步骤
 
+#### 选项 1：通过 PyPI 安装（推荐）
+```bash
+pip install mcp-documents-reader
+```
+
+#### 选项 2：通过源码安装
 ```bash
 # 克隆仓库
 git clone https://github.com/xt765/mcp_documents_reader.git
@@ -54,7 +64,21 @@ pip install -e .
 
 将以下内容添加到 Trae IDE 的 MCP 配置中：
 
-#### 选项 1：使用 GitHub 仓库（推荐）
+#### 选项 1：使用 PyPI 包（推荐）
+```json
+{
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "mcp-documents-reader"
+      ]
+    }
+  }
+}
+```
+
+#### 选项 2：使用 GitHub 仓库
 ```json
 {
   "mcpServers": {
