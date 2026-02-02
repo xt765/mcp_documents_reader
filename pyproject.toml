@@ -2,6 +2,7 @@
 name = "mcp_documents_reader"
 version = "1.0.0"
 description = "An MCP enabled multi-format document reader supporting DOCX, PDF, TXT, and Excel files"
+keywords = ["mcp", "model-context-protocol", "document-reader", "pdf", "docx", "excel"]
 authors = [
   { name = "xt765", email = "xt765@foxmail.com" }
 ]
