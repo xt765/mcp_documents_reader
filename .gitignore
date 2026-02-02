@@ -41,6 +41,10 @@ requirements.txt
 # IDE Exclusions
 # ---------------------------
 
+# MCP Registry tokens
+.mcpregistry_*
+mcp-publisher.exe
+
 # VSCode
 .vscode/
 *.code-workspace

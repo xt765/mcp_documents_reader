@@ -7,12 +7,12 @@
     "url": "https://github.com/xt765/mcp_documents_reader",
     "source": "github"
   },
-  "version": "1.0.0",
+  "version": "1.0.3",
   "packages": [
     {
       "registryType": "pypi",
-      "identifier": "mcp_documents_reader",
-      "version": "1.0.0",
+      "identifier": "mcp-documents-reader",
+      "version": "1.0.3",
       "transport": {
         "type": "stdio"
       }
