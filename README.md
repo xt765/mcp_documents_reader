@@ -43,7 +43,12 @@ Official Registry: [View on MCP Registry](https://registry.modelcontextprotocol.
 
 ### Installation Steps
 
-#### Option 1: Install from Source (Recommended)
+#### Option 1: Install from PyPI (Recommended)
+```bash
+pip install mcp-documents-reader
+```
+
+#### Option 2: Install from Source
 ```bash
 # Clone the repository
 git clone https://github.com/xt765/mcp_documents_reader.git
@@ -56,18 +61,27 @@ cd mcp_documents_reader
 pip install -e .
 ```
 
-#### Option 2: Install from PyPI
-```bash
-pip install mcp-documents-reader
-```
-
 ## Configuration
 
 ### Using in Trae IDE
 
 Add the following to your Trae IDE's MCP configuration:
 
-#### Option 1: Using GitHub repository (Recommended)
+#### Option 1: Using PyPI package (Recommended)
+```json
+{
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "mcp-documents-reader"
+      ]
+    }
+  }
+}
+```
+
+#### Option 2: Using GitHub repository
 ```json
 {
   "mcpServers": {
@@ -83,7 +97,7 @@ Add the following to your Trae IDE's MCP configuration:
 }
 ```
 
-#### Option 2: Using Gitee repository
+#### Option 3: Using Gitee repository
 ```json
 {
   "mcpServers": {
@@ -92,20 +106,6 @@ Add the following to your Trae IDE's MCP configuration:
       "args": [
         "--from",
         "git+https://gitee.com/xt765/mcp_documents_reader",
-        "mcp_documents_reader"
-      ]
-    }
-  }
-}
-```
-
-#### Option 3: Using PyPI package
-```json
-{
-  "mcpServers": {
-    "mcp-document-reader": {
-      "command": "uvx",
-      "args": [
         "mcp_documents_reader"
       ]
     }

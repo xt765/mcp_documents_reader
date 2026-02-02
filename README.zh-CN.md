@@ -43,7 +43,12 @@ PyPI：[https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project
 
 ### 安装步骤
 
-#### 选项 1：通过源码安装（推荐）
+#### 选项 1：通过 PyPI 安装（推荐）
+```bash
+pip install mcp-documents-reader
+```
+
+#### 选项 2：通过源码安装
 ```bash
 # 克隆仓库
 git clone https://github.com/xt765/mcp_documents_reader.git
@@ -56,18 +61,27 @@ cd mcp_documents_reader
 pip install -e .
 ```
 
-#### 选项 2：通过 PyPI 安装
-```bash
-pip install mcp-documents-reader
-```
-
 ## 配置
 
 ### 在 Trae IDE 中使用
 
 将以下内容添加到 Trae IDE 的 MCP 配置中：
 
-#### 选项 1：使用 GitHub 仓库（推荐）
+#### 选项 1：使用 PyPI 包（推荐）
+```json
+{
+  "mcpServers": {
+    "mcp-document-reader": {
+      "command": "uvx",
+      "args": [
+        "mcp-documents-reader"
+      ]
+    }
+  }
+}
+```
+
+#### 选项 2：使用 GitHub 仓库
 ```json
 {
   "mcpServers": {
@@ -83,7 +97,7 @@ pip install mcp-documents-reader
 }
 ```
 
-#### 选项 2：使用 Gitee 仓库
+#### 选项 3：使用 Gitee 仓库
 ```json
 {
   "mcpServers": {
@@ -92,20 +106,6 @@ pip install mcp-documents-reader
       "args": [
         "--from",
         "git+https://gitee.com/xt765/mcp_documents_reader",
-        "mcp_documents_reader"
-      ]
-    }
-  }
-}
-```
-
-#### 选项 3：使用 PyPI 包
-```json
-{
-  "mcpServers": {
-    "mcp-document-reader": {
-      "command": "uvx",
-      "args": [
         "mcp_documents_reader"
       ]
     }
