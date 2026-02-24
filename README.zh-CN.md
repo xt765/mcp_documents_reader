@@ -1,14 +1,16 @@
-# MCP 文档读取器
+# MCP Document Reader (MCP 文档读取器)
 
 <!-- mcp-name: io.github.xt765/mcp_documents_reader -->
 
 [![CSDN Blog](https://img.shields.io/badge/CSDN-玄同765-orange.svg?style=flat&logo=csdn)](https://blog.csdn.net/Yunyi_Chi)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-mcp_documents_reader-black.svg?style=flat&logo=github)](https://github.com/xt765/mcp_documents_reader)
 [![Gitee Repository](https://img.shields.io/badge/Gitee-mcp_documents_reader-red.svg?style=flat&logo=gitee)](https://gitee.com/xt765/mcp_documents_reader)
-[![GitHub License](https://img.shields.io/github/license/xt765/mcp_documents_reader.svg?style=flat&logo=github)](https://github.com/xt765/mcp_documents_reader/blob/main/LICENSE)
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat&logo=opensourceinitiative)](LICENSE)
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg?style=flat&logo=python)](https://www.python.org/downloads/)
 [![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg?logo=pypi)](https://pypi.org/project/mcp-documents-reader/)
-[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green.svg?logo=mcp)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
+[![PyPI Downloads](https://img.shields.io/pepy/dt/mcp-documents-reader.svg?logo=pypi&label=PyPI%20Downloads)](https://pepy.tech/project/mcp-documents-reader)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=modelcontextprotocol)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
@@ -16,6 +18,32 @@ GitHub 仓库：[https://github.com/xt765/mcp_documents_reader](https://github.c
 Gitee 仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
 PyPI：[https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
 官方注册表：[在 MCP Registry 查看](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
+
+## 架构
+
+```mermaid
+graph TB
+    A[AI Assistant / User<br/>AI 助手 / 用户] -->|Call read_document<br/>调用 read_document| B[MCP Document Reader<br/>MCP 文档读取器]
+    B -->|Detect file type<br/>检测文件类型| C{File Type?<br/>文件类型?}
+    C -->|.docx| D[DOCX Reader<br/>DOCX 读取器]
+    C -->|.pdf| E[PDF Reader<br/>PDF 读取器]
+    C -->|.xlsx/.xls| F[Excel Reader<br/>Excel 读取器]
+    C -->|.txt| G[Text Reader<br/>文本读取器]
+    D -->|Extract text<br/>提取文本| H[Return Content<br/>返回内容]
+    E -->|Extract text<br/>提取文本| H
+    F -->|Extract text<br/>提取文本| H
+    G -->|Extract text<br/>提取文本| H
+    H -->|Text content<br/>文本内容| A
+    
+    style A fill:#e1f5ff
+    style B fill:#fff4e1
+    style C fill:#f0f0f0
+    style D fill:#e8f5e9
+    style E fill:#e8f5e9
+    style F fill:#e8f5e9
+    style G fill:#e8f5e9
+    style H fill:#fff9c4
+```
 
 ## 功能特性
 
@@ -43,7 +71,7 @@ PyPI：[https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project
 
 ### 安装步骤
 
-#### 选项 1：通过 PyPI 安装（推荐）
+#### 选项 1：通过 PyPI 安装 (推荐)
 ```bash
 pip install mcp-documents-reader
 ```
@@ -67,7 +95,7 @@ pip install -e .
 
 将以下内容添加到 Trae IDE 的 MCP 配置中：
 
-#### 选项 1：使用 PyPI 包（推荐）
+#### 选项 1：使用 PyPI 包 (推荐)
 ```json
 {
   "mcpServers": {
@@ -123,7 +151,7 @@ pip install -e .
 
 配置完成后，AI 助手可以直接调用以下工具：
 
-#### read_document（推荐）
+#### read_document (推荐)
 使用统一接口读取任何支持的文档类型。
 
 ```
