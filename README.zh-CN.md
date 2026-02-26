@@ -15,8 +15,11 @@
 MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
 GitHub 仓库：[https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
+
 Gitee 仓库：[https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+
 PyPI：[https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
+
 官方注册表：[在 MCP Registry 查看](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 ## 架构
