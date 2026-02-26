@@ -15,8 +15,11 @@
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
 GitHub Repository: [https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
+
 Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
+
 PyPI: [https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
+
 Official Registry: [View on MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 
 ## Architecture
