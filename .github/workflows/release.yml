@@ -107,5 +107,22 @@ jobs:
         curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
     - name: Authenticate to MCP Registry
       run: ./mcp-publisher login github-oidc
+    - name: Check if version exists in MCP Registry
+      id: check-version
+      run: |
+        VERSION=$(grep -oP '^version\s*=\s*"\K[^"]+' pyproject.toml || grep -oP 'version\s*=\s*"\K[^"]+' pyproject.toml | head -1)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        
+        # 检查版本是否已存在于 MCP Registry
+        HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://registry.modelcontextprotocol.io/v0/servers/io.github.xt765/mcp_documents_reader/versions/$VERSION")
+        
+        if [ "$HTTP_CODE" = "200" ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+          echo "::warning::Version $VERSION already exists in MCP Registry, skipping publish"
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+          echo "Version $VERSION does not exist in MCP Registry, will publish"
+        fi
     - name: Publish server to MCP Registry
+      if: steps.check-version.outputs.exists == 'false'
       run: ./mcp-publisher publish
