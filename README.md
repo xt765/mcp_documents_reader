@@ -12,8 +12,6 @@
 [![PyPI Downloads](https://img.shields.io/pepy/dt/mcp-documents-reader.svg?logo=pypi&label=PyPI%20Downloads)](https://pepy.tech/project/mcp-documents-reader)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=modelcontextprotocol)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 [![MCP Marketplace](https://img.shields.io/badge/MCP-Marketplace-green.svg?style=flat&logo=shopify)](https://mcp-marketplace.io/server/io-github-xt765-mcp-documents-reader)
-[![CI](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml/badge.svg)](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/xt765/mcp_documents_reader/branch/main/graph/badge.svg)](https://codecov.io/gh/xt765/mcp_documents_reader)
 
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
