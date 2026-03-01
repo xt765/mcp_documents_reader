@@ -6,7 +6,6 @@
 - 临时目录管理
 """
 
-import os
 import tempfile
 from pathlib import Path
 from typing import Generator

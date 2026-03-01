@@ -9,10 +9,7 @@ import os
 from pathlib import Path
 from unittest import mock
 
-import pytest
-
 from mcp_documents_reader import (
-    DOCUMENT_DIRECTORY,
     _get_document_path,
     read_document,
 )
@@ -254,7 +251,9 @@ class TestReadDocumentWithMockedFilesystem:
         assert result == "test content"
 
     @mock.patch("mcp_documents_reader.os.path.exists")
-    def test_read_document_file_not_exists_mock(self, mock_exists: mock.MagicMock) -> None:
+    def test_read_document_file_not_exists_mock(
+        self, mock_exists: mock.MagicMock
+    ) -> None:
         """测试文件不存在的情况（使用 mock）。
 
         Args:

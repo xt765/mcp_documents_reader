@@ -8,7 +8,6 @@
 
 import os
 import tempfile
-from pathlib import Path
 from unittest import mock
 
 import pytest
@@ -66,10 +65,9 @@ class TestAppLifespan:
         with tempfile.TemporaryDirectory() as tmpdir:
             test_dir = os.path.join(tmpdir, "test_documents")
 
-            with mock.patch.dict(
-                os.environ, {"DOCUMENT_DIRECTORY": test_dir}
-            ), mock.patch(
-                "mcp_documents_reader.DOCUMENT_DIRECTORY", test_dir
+            with (
+                mock.patch.dict(os.environ, {"DOCUMENT_DIRECTORY": test_dir}),
+                mock.patch("mcp_documents_reader.DOCUMENT_DIRECTORY", test_dir),
             ):
                 mock_server = mock.MagicMock()
 
@@ -86,10 +84,9 @@ class TestAppLifespan:
             test_dir = os.path.join(tmpdir, "existing_documents")
             os.makedirs(test_dir)
 
-            with mock.patch.dict(
-                os.environ, {"DOCUMENT_DIRECTORY": test_dir}
-            ), mock.patch(
-                "mcp_documents_reader.DOCUMENT_DIRECTORY", test_dir
+            with (
+                mock.patch.dict(os.environ, {"DOCUMENT_DIRECTORY": test_dir}),
+                mock.patch("mcp_documents_reader.DOCUMENT_DIRECTORY", test_dir),
             ):
                 mock_server = mock.MagicMock()
 
@@ -115,7 +112,7 @@ class TestAppLifespan:
         mock_server = mock.MagicMock()
 
         try:
-            async with app_lifespan(mock_server) as context:
+            async with app_lifespan(mock_server) as _:
                 raise ValueError("Test exception")
         except ValueError:
             pass  # 预期的异常

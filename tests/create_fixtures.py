@@ -9,7 +9,6 @@
 - empty.*: 各种空文档文件
 """
 
-import os
 from pathlib import Path
 
 # 安装并导入必要的库

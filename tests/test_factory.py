@@ -10,8 +10,8 @@
 import pytest
 
 from mcp_documents_reader import (
-    DocxReader,
     DocumentReaderFactory,
+    DocxReader,
     ExcelReader,
     PdfReader,
     TxtReader,

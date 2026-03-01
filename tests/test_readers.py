@@ -13,8 +13,8 @@ from pathlib import Path
 import pytest
 
 from mcp_documents_reader import (
-    DocxReader,
     DocumentReader,
+    DocxReader,
     ExcelReader,
     PdfReader,
     TxtReader,
@@ -46,7 +46,7 @@ class TestDocumentReader:
         class CompleteReader(DocumentReader):
             """完整的 Reader 实现。"""
 
-            def read(self, file_path: str) -> str:
+            def read(self, _file_path: str) -> str:
                 """读取文件内容。"""
                 return "test content"
 
