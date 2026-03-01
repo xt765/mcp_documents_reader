@@ -5,6 +5,17 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.1.0] - 2025-03-01
+
+### 修复
+
+- **Python 兼容性**：使用 `typing_extensions.override` 替代 `typing.override`，兼容 Python 3.10+
+- **类型检查**：修复 Basedpyright 类型错误
+  - 修复 `openpyxl.Workbook.active` 可选类型检查
+  - 修复方法覆写参数名匹配问题
+- **编码处理**：移除无效的 `ansi` 编码（Python 标准库不支持）
+- **测试修复**：修复路径遍历测试用例
+
 ## [1.0.3] - 2025-03-01
 
 ### 新增
