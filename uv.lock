@@ -704,6 +704,7 @@ dependencies = [
     { name = "openpyxl" },
     { name = "pypdf2" },
     { name = "python-docx" },
+    { name = "typing-extensions" },
 ]
 
 [package.optional-dependencies]
@@ -731,6 +732,7 @@ requires-dist = [
     { name = "pytest-cov", marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "python-docx", specifier = ">=0.8.11" },
     { name = "ruff", marker = "extra == 'dev'", specifier = ">=0.8.0" },
+    { name = "typing-extensions", specifier = ">=4.0.0" },
 ]
 provides-extras = ["dev"]
 
