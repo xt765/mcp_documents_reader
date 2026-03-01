@@ -3,11 +3,24 @@
   "name": "io.github.xt765/mcp_documents_reader",
   "title": "MCP Document Reader",
   "description": "An MCP enabled multi-format document reader supporting DOCX, PDF, TXT, and Excel files",
+  "version": "1.0.3",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "xt765"
+    }
+  ],
+  "keywords": [
+    "mcp",
+    "document-reader",
+    "pdf",
+    "docx",
+    "excel"
+  ],
   "repository": {
     "url": "https://github.com/xt765/mcp_documents_reader",
     "source": "github"
   },
-  "version": "1.0.3",
   "packages": [
     {
       "registryType": "pypi",
