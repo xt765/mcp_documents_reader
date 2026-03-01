@@ -3,6 +3,17 @@ name: Release
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      skip_pypi:
+        description: 'Skip PyPI publish (only publish to MCP Registry)'
+        required: false
+        default: 'false'
+        type: boolean
+      version:
+        description: 'Version to publish (e.g., 1.1.0, required when skip_pypi is true)'
+        required: false
+        type: string
 
 jobs:
   test:
@@ -88,6 +99,7 @@ jobs:
   pypi-publish:
     name: Upload release to PyPI
     needs: build
+    if: ${{ github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.skip_pypi != 'true') }}
     runs-on: ubuntu-latest
     environment:
       name: pypi
@@ -104,7 +116,8 @@ jobs:
 
   mcp-registry-publish:
     name: Publish to MCP Registry
-    needs: pypi-publish
+    needs: [build, pypi-publish]
+    if: always() && needs.build.result == 'success' && (needs.pypi-publish.result == 'success' || needs.pypi-publish.result == 'skipped')
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -112,9 +125,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Get version from tag
+    - name: Get version from tag or input
       id: get_version
-      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+      run: |
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ -n "${{ github.event.inputs.version }}" ]; then
+          echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+        else
+          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+        fi
 
     - name: Update server.json version
       run: |
