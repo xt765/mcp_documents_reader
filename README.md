@@ -15,14 +15,6 @@
 
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
-GitHub Repository: [https://github.com/xt765/mcp_documents_reader](https://github.com/xt765/mcp_documents_reader)
-
-Gitee Repository: [https://gitee.com/xt765/mcp_documents_reader](https://gitee.com/xt765/mcp_documents_reader)
-
-PyPI: [https://pypi.org/project/mcp-documents-reader/](https://pypi.org/project/mcp-documents-reader/)
-
-Official Registry: [View on MCP Registry](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
-
 ## Architecture
 
 ```mermaid
@@ -175,50 +167,6 @@ Read any supported document type.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | filename | string | ✅ | Document file path, supports absolute or relative paths |
-
-## Development
-
-### Running Tests
-
-```bash
-# Install development dependencies
-pip install mcp-documents-reader[dev]
-
-# Run all tests
-pytest tests/ -v
-
-# Run tests with coverage
-pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
-
-# Or use the test runner script
-python scripts/run_tests.py --html
-```
-
-### Code Quality
-
-```bash
-# Run linter
-ruff check .
-
-# Format code
-ruff format .
-
-# Type checking
-basedpyright .
-```
-
-For more details, see [DEVELOPMENT.md](DEVELOPMENT.md)
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration and deployment:
-
-- **CI**: Runs tests on multiple Python versions (3.8-3.12) and platforms (Ubuntu, Windows, macOS)
-- **Code Quality**: Linting with ruff and type checking with basedpyright
-- **Security**: Weekly security scans with pip-audit, bandit, and safety
-- **Release**: Automatic PyPI publication on version tag push
-
-For release process, see [RELEASE.md](RELEASE.md)
 
 ## License
 
