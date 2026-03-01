@@ -45,7 +45,6 @@ select = ["E", "F", "I", "ARG"]
 "mcp_documents_reader.py" = ["ARG001"]
 
 [tool.pytest.ini_options]
-pythonpath = "."
 testpaths = ["tests"]
 addopts = "-v --cov=mcp_documents_reader --cov-report=term-missing --cov-fail-under=90"
 asyncio_mode = "auto"
