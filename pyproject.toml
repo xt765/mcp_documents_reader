@@ -64,7 +64,6 @@ addopts = [
   "-v",
   "--cov=mcp_documents_reader",
   "--cov-report=term-missing",
-  "--cov-report=xml",
 ]
 asyncio_mode = "auto"
 

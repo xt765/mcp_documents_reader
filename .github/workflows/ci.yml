@@ -38,16 +38,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        uv run pytest tests/ -v --cov=mcp_documents_reader --cov-report=xml --cov-report=term-missing
-
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v4
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        env_vars: OS,PYTHON
-        name: codecov-umbrella
-        fail_ci_if_error: false
+        uv run pytest tests/ -v --cov=mcp_documents_reader --cov-report=term-missing
 
   lint:
     name: Code Quality Checks

@@ -59,7 +59,6 @@ def main():
         cmd.extend([
             "--cov=mcp_documents_reader",
             "--cov-report=term-missing",
-            "--cov-report=xml",
         ])
 
         if args.html:
@@ -80,7 +79,7 @@ def main():
 
     if not args.no_cov:
         print("\n📊 覆盖率报告已生成:")
-        print("   - XML: coverage.xml")
+        print("   - Terminal: 已显示")
         if args.html:
             print("   - HTML: htmlcov/index.html")
 
