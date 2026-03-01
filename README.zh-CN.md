@@ -11,6 +11,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/mcp-documents-reader.svg?logo=pypi)](https://pypi.org/project/mcp-documents-reader/)
 [![PyPI Downloads](https://img.shields.io/pepy/dt/mcp-documents-reader.svg?logo=pypi&label=PyPI%20Downloads)](https://pepy.tech/project/mcp-documents-reader)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=modelcontextprotocol)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
+[![MCP Marketplace](https://img.shields.io/badge/MCP-Marketplace-green.svg?style=flat&logo=shopify)](https://mcp-marketplace.io/server/io-github-xt765-mcp-documents-reader)
 
 MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
