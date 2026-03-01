@@ -189,8 +189,8 @@ class TestReadDocument:
         Args:
             mock_context_with_temp_dir: 带有临时目录的模拟上下文
         """
-        # 尝试路径遍历攻击
-        result = read_document(mock_context_with_temp_dir, "../../../etc/passwd")
+        # 尝试路径遍历攻击（使用 .txt 扩展名以通过类型检查）
+        result = read_document(mock_context_with_temp_dir, "../../../etc/passwd.txt")
 
         # 应返回文件不存在的错误
         assert "Error:" in result

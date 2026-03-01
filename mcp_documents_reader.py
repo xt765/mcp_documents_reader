@@ -115,7 +115,7 @@ class TxtReader(DocumentReader):
     def read(self, file_path: str) -> str:
         """Read and extract text from TXT file with encoding handling"""
         # Supported encodings in priority order
-        encodings = ["utf-8", "gbk", "gb2312", "ansi", "latin-1"]
+        encodings = ["utf-8", "gbk", "gb2312", "latin-1"]
 
         for encoding in encodings:
             try:
