@@ -13,16 +13,37 @@ jobs:
         python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ matrix.python-version }}-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-${{ matrix.python-version }}-
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -e .[dev]
-    - name: Run tests
-      run: pytest
+
+    - name: Lint with Ruff
+      run: ruff check mcp_documents_reader.py tests
+
+    - name: Check formatting with Ruff
+      run: ruff format --check mcp_documents_reader.py tests
+
+    - name: Type check with Basedpyright
+      run: basedpyright mcp_documents_reader.py
+
+    - name: Run tests with coverage
+      run: pytest --cov-report=xml
 
   build:
     needs: test
@@ -32,44 +53,32 @@ jobs:
       with:
         fetch-depth: 0
         fetch-tags: true
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: "3.10"
+
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-build-${{ hashFiles('pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-build-
+          ${{ runner.os }}-pip-
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install build twine toml
-    - name: Sync version to server.json
-      run: |
-        python -c "
-        import toml
-        import json
-        import re
+        pip install build twine
 
-        # 从 pyproject.toml 读取版本
-        with open('pyproject.toml', 'r') as f:
-            pyproject = toml.load(f)
-        version = pyproject['project']['version']
-        print(f'Version from pyproject.toml: {version}')
-
-        # 更新 server.json
-        with open('server.json', 'r') as f:
-            server = json.load(f)
-
-        server['version'] = version
-        server['packages'][0]['version'] = version
-
-        with open('server.json', 'w') as f:
-            json.dump(server, f, indent=2)
-            f.write('\n')
-
-        print(f'Updated server.json to version {version}')
-        "
     - name: Build package
       run: python -m build
+
     - name: Check distribution
       run: python -m twine check --strict dist/*
+
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
       with:
@@ -102,27 +111,31 @@ jobs:
       contents: read
     steps:
     - uses: actions/checkout@v4
+
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+    - name: Update server.json version
+      run: |
+        VERSION=${{ steps.get_version.outputs.VERSION }}
+        python -c "
+        import json
+        with open('server.json', 'r') as f:
+            data = json.load(f)
+        data['version'] = '$VERSION'
+        for pkg in data.get('packages', []):
+            pkg['version'] = '$VERSION'
+        with open('server.json', 'w') as f:
+            json.dump(data, f, indent=2)
+        "
+
     - name: Download mcp-publisher
       run: |
         curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
     - name: Authenticate to MCP Registry
       run: ./mcp-publisher login github-oidc
-    - name: Check if version exists in MCP Registry
-      id: check-version
-      run: |
-        VERSION=$(grep -oP '^version\s*=\s*"\K[^"]+' pyproject.toml || grep -oP 'version\s*=\s*"\K[^"]+' pyproject.toml | head -1)
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
-        
-        # 检查版本是否已存在于 MCP Registry
-        HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://registry.modelcontextprotocol.io/v0/servers/io.github.xt765/mcp_documents_reader/versions/$VERSION")
-        
-        if [ "$HTTP_CODE" = "200" ]; then
-          echo "exists=true" >> $GITHUB_OUTPUT
-          echo "::warning::Version $VERSION already exists in MCP Registry, skipping publish"
-        else
-          echo "exists=false" >> $GITHUB_OUTPUT
-          echo "Version $VERSION does not exist in MCP Registry, will publish"
-        fi
+
     - name: Publish server to MCP Registry
-      if: steps.check-version.outputs.exists == 'false'
       run: ./mcp-publisher publish
