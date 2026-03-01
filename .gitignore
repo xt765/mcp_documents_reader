@@ -159,6 +159,9 @@ coverage.xml
 htmlcov/
 coverage.xml
 
+# Scripts output
+scripts/__pycache__/
+
 # Dependency directories
 node_modules/
 jspm_packages/

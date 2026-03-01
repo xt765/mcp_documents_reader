@@ -194,7 +194,7 @@ pytest tests/ -v
 pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
 
 # 或使用测试运行脚本
-python run_tests.py --html
+python scripts/run_tests.py --html
 ```
 
 ### 代码质量

@@ -3,10 +3,10 @@
 测试运行脚本
 
 使用方法:
-    python run_tests.py              # 运行所有测试
-    python run_tests.py --verbose    # 详细输出
-    python run_tests.py --no-cov     # 不生成覆盖率报告
-    python run_tests.py --html       # 生成 HTML 覆盖率报告
+    python scripts/run_tests.py              # 运行所有测试
+    python scripts/run_tests.py --verbose    # 详细输出
+    python scripts/run_tests.py --no-cov     # 不生成覆盖率报告
+    python scripts/run_tests.py --html       # 生成 HTML 覆盖率报告
 """
 import subprocess
 import sys

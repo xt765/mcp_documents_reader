@@ -35,6 +35,9 @@ uv run pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
 # 查看覆盖率报告
 # 打开 htmlcov/index.html
 
+# 或使用测试运行脚本
+uv run python scripts/run_tests.py --html
+
 # 运行特定测试文件
 uv run pytest tests/test_readers.py -v
 

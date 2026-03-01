@@ -193,7 +193,7 @@ pytest tests/ -v
 pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
 
 # Or use the test runner script
-python run_tests.py --html
+python scripts/run_tests.py --html
 ```
 
 ### Code Quality
