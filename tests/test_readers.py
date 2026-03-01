@@ -46,7 +46,7 @@ class TestDocumentReader:
         class CompleteReader(DocumentReader):
             """完整的 Reader 实现。"""
 
-            def read(self, _file_path: str) -> str:
+            def read(self, file_path: str) -> str:  # noqa: ARG002
                 """读取文件内容。"""
                 return "test content"
 

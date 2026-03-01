@@ -90,16 +90,17 @@ Special characters: 中文, English, 123, !@#$%
 
     # 第一个工作表
     ws1 = wb.active
-    ws1.title = "Sheet1"
-    ws1["A1"] = "姓名"
-    ws1["B1"] = "年龄"
-    ws1["C1"] = "城市"
-    ws1["A2"] = "张三"
-    ws1["B2"] = 25
-    ws1["C2"] = "北京"
-    ws1["A3"] = "李四"
-    ws1["B3"] = 30
-    ws1["C3"] = "上海"
+    if ws1 is not None:
+        ws1.title = "Sheet1"
+        ws1["A1"] = "姓名"
+        ws1["B1"] = "年龄"
+        ws1["C1"] = "城市"
+        ws1["A2"] = "张三"
+        ws1["B2"] = 25
+        ws1["C2"] = "北京"
+        ws1["A3"] = "李四"
+        ws1["B3"] = 30
+        ws1["C3"] = "上海"
 
     # 第二个工作表
     ws2 = wb.create_sheet("Sheet2")
@@ -115,7 +116,9 @@ Special characters: 中文, English, 123, !@#$%
 
     # 创建空 Excel 文件
     empty_wb = Workbook()
-    empty_wb.remove(empty_wb.active)  # 删除默认工作表
+    empty_active = empty_wb.active
+    if empty_active is not None:
+        empty_wb.remove(empty_active)  # 删除默认工作表
     empty_wb.create_sheet("Sheet1")  # 创建空工作表
     empty_wb.save(str(fixtures_dir / "empty.xlsx"))
     print("Created: empty.xlsx")

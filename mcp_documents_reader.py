@@ -3,12 +3,12 @@ from abc import ABC, abstractmethod
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
-from typing_extensions import override
 
 from docx import Document as DocxDocument
 from mcp.server.fastmcp import FastMCP
 from openpyxl import load_workbook
 from PyPDF2 import PdfReader as PyPdfReader
+from typing_extensions import override
 
 # Directory where documents are stored
 DOCUMENT_DIRECTORY = os.getenv("DOCUMENT_DIRECTORY", "./documents")
