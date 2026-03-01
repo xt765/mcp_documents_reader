@@ -5,10 +5,6 @@
 # Document directory with test files
 /documents/
 
-# Test files
-/test_*.py
-**/test_*.py
-
 # Trae IDE configuration
 .trae/
 
@@ -147,20 +143,8 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 .nyc_output/
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-*.coverage
-
-# pytest
-.pytest_cache/
 .coverage
 htmlcov/
-coverage.xml
-
-# Scripts output
-scripts/__pycache__/
 
 # Dependency directories
 node_modules/

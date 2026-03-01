@@ -1,0 +1,5 @@
+这是测试文本文件。
+包含多行内容。
+用于测试 TxtReader。
+
+Special characters: 中文, English, 123, !@#$%
