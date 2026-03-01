@@ -1,6 +1,6 @@
 [project]
 name = "mcp-documents-reader"
-version = "1.0.3"
+version = "1.0.4"
 description = "An MCP enabled multi-format document reader supporting DOCX, PDF, TXT, and Excel files"
 keywords = ["mcp", "model-context-protocol", "document-reader", "pdf", "docx", "excel"]
 authors = [
@@ -15,6 +15,17 @@ dependencies = [
   "openpyxl>=3.0.10"
 ]
 
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0.0",
+  "pytest-asyncio>=0.21.0",
+  "pytest-cov>=4.0.0",
+  "reportlab>=4.0.0",
+  "ruff>=0.1.0",
+  "basedpyright>=1.0.0",
+  "build>=1.0.0",
+]
+
 [project.scripts]
 mcp-documents-reader = "mcp_documents_reader:main"
 mcp_documents_reader = "mcp_documents_reader:main"
@@ -27,14 +38,53 @@ build-backend = "hatchling.build"
 include = ["mcp_documents_reader.py"]
 
 [tool.ruff]
-select = ["E", "F", "I"]
 line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "I",  # isort
+  "B",  # flake8-bugbear
+  "C4", # flake8-comprehensions
+]
+ignore = [
+  "E501",  # line too long (handled by formatter)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mcp_documents_reader"]
 
 [tool.pytest.ini_options]
-pythonpath = "."
+pythonpath = ["."]
 testpaths = ["tests"]
-addopts = "-v"
+addopts = [
+  "-v",
+  "--cov=mcp_documents_reader",
+  "--cov-report=term-missing",
+  "--cov-report=xml",
+]
+asyncio_mode = "auto"
 
-[tool.black]
-line-length = 88
-target-version = ["py38"]
+[tool.coverage.run]
+source = ["mcp_documents_reader"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+  "@abstractmethod",
+]
+
+[tool.basedpyright]
+pythonVersion = "3.8"
+typeCheckingMode = "basic"
+include = ["mcp_documents_reader.py", "tests"]
+exclude = ["**/__pycache__", ".venv", "dist", "build"]

@@ -147,6 +147,17 @@ pids
 # Coverage directory used by tools like istanbul
 coverage/
 .nyc_output/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.coverage
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+coverage.xml
 
 # Dependency directories
 node_modules/

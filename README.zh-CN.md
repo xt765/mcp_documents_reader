@@ -12,6 +12,9 @@
 [![PyPI Downloads](https://img.shields.io/pepy/dt/mcp-documents-reader.svg?logo=pypi&label=PyPI%20Downloads)](https://pepy.tech/project/mcp-documents-reader)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=modelcontextprotocol)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 [![MCP Marketplace](https://img.shields.io/badge/MCP-Marketplace-green.svg?style=flat&logo=shopify)](https://mcp-marketplace.io/server/io-github-xt765-mcp-documents-reader)
+[![CI](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml/badge.svg)](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/xt765/mcp_documents_reader/branch/main/graph/badge.svg)](https://codecov.io/gh/xt765/mcp_documents_reader)
+[![MCP Marketplace](https://img.shields.io/badge/MCP-Marketplace-green.svg?style=flat&logo=shopify)](https://mcp-marketplace.io/server/io-github-xt765-mcp-documents-reader)
 
 MCP（模型上下文协议）文档读取器 - 一个强大的 MCP 工具，用于读取多种格式的文档，使 AI 智能体能够真正"读取"您的文档。
 
@@ -175,6 +178,50 @@ read_document(filename="example.txt")
 | 参数 | 类型 | 必填 | 描述 |
 |------|------|------|------|
 | filename | string | ✅ | 文档文件路径，支持绝对路径或相对路径 |
+
+## 开发
+
+### 运行测试
+
+```bash
+# 安装开发依赖
+pip install mcp-documents-reader[dev]
+
+# 运行所有测试
+pytest tests/ -v
+
+# 运行测试并生成覆盖率报告
+pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
+
+# 或使用测试运行脚本
+python run_tests.py --html
+```
+
+### 代码质量
+
+```bash
+# 运行代码检查
+ruff check .
+
+# 格式化代码
+ruff format .
+
+# 类型检查
+basedpyright .
+```
+
+详细信息请查看 [DEVELOPMENT.md](DEVELOPMENT.md)
+
+## CI/CD
+
+本项目使用 GitHub Actions 进行持续集成和部署：
+
+- **CI**: 在多个 Python 版本（3.8-3.12）和平台（Ubuntu、Windows、macOS）上运行测试
+- **代码质量**: 使用 ruff 进行代码检查，使用 basedpyright 进行类型检查
+- **安全**: 每周使用 pip-audit、bandit 和 safety 进行安全扫描
+- **发布**: 推送版本标签时自动发布到 PyPI
+
+发布流程请查看 [RELEASE.md](RELEASE.md)
 
 ## 许可证
 

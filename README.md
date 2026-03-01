@@ -12,6 +12,8 @@
 [![PyPI Downloads](https://img.shields.io/pepy/dt/mcp-documents-reader.svg?logo=pypi&label=PyPI%20Downloads)](https://pepy.tech/project/mcp-documents-reader)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue?logo=modelcontextprotocol)](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.xt765/mcp_documents_reader)
 [![MCP Marketplace](https://img.shields.io/badge/MCP-Marketplace-green.svg?style=flat&logo=shopify)](https://mcp-marketplace.io/server/io-github-xt765-mcp-documents-reader)
+[![CI](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml/badge.svg)](https://github.com/xt765/mcp_documents_reader/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/xt765/mcp_documents_reader/branch/main/graph/badge.svg)](https://codecov.io/gh/xt765/mcp_documents_reader)
 
 MCP (Model Context Protocol) Document Reader - A powerful MCP tool for reading documents in multiple formats, enabling AI agents to truly "read" your documents.
 
@@ -175,6 +177,50 @@ Read any supported document type.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | filename | string | ✅ | Document file path, supports absolute or relative paths |
+
+## Development
+
+### Running Tests
+
+```bash
+# Install development dependencies
+pip install mcp-documents-reader[dev]
+
+# Run all tests
+pytest tests/ -v
+
+# Run tests with coverage
+pytest tests/ -v --cov=mcp_documents_reader --cov-report=html
+
+# Or use the test runner script
+python run_tests.py --html
+```
+
+### Code Quality
+
+```bash
+# Run linter
+ruff check .
+
+# Format code
+ruff format .
+
+# Type checking
+basedpyright .
+```
+
+For more details, see [DEVELOPMENT.md](DEVELOPMENT.md)
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration and deployment:
+
+- **CI**: Runs tests on multiple Python versions (3.8-3.12) and platforms (Ubuntu, Windows, macOS)
+- **Code Quality**: Linting with ruff and type checking with basedpyright
+- **Security**: Weekly security scans with pip-audit, bandit, and safety
+- **Release**: Automatic PyPI publication on version tag push
+
+For release process, see [RELEASE.md](RELEASE.md)
 
 ## License
 

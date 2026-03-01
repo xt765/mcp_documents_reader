@@ -1,0 +1,46 @@
+name: Security Scan
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 0 * * 0'  # Weekly security scan
+
+jobs:
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Install dependencies
+      run: |
+        uv venv
+        uv pip install -e .
+        uv pip install pip-audit bandit safety
+
+    - name: Run pip-audit
+      run: |
+        uv run pip-audit || true
+
+    - name: Run bandit
+      run: |
+        uv run bandit -r . -ll || true
+
+    - name: Run safety check
+      run: |
+        uv run safety check || true

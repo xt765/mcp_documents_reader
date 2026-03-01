@@ -1,0 +1,166 @@
+name: Release and Publish
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      publish_pypi:
+        description: 'Publish to PyPI'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  validate:
+    name: Validate Release
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Install dependencies
+      run: |
+        uv venv
+        uv pip install -e .
+        uv pip install pytest pytest-asyncio pytest-cov reportlab
+
+    - name: Run tests
+      run: |
+        uv run pytest tests/ -v --cov=mcp_documents_reader --cov-report=xml
+
+    - name: Run linting
+      run: |
+        uv run ruff check .
+        uv run ruff format --check .
+        uv run basedpyright .
+
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Install build dependencies
+      run: |
+        uv venv
+        uv pip install build
+
+    - name: Build source and wheel distribution
+      run: |
+        uv run python -m build
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+  publish-pypi:
+    name: Publish to PyPI
+    runs-on: ubuntu-latest
+    needs: [validate, build]
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish_pypi)
+    environment:
+      name: pypi
+      url: https://pypi.org/p/mcp-documents-reader
+    permissions:
+      id-token: write
+
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        verbose: true
+        print-hash: true
+
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [validate, build]
+    if: github.event_name == 'push'
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: dist
+        path: dist/
+
+    - name: Get tag name
+      id: tag
+      run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Generate release notes
+      id: release_notes
+      run: |
+        echo "CHANGELOG<<EOF" >> $GITHUB_OUTPUT
+        if [ -f "CHANGELOG.md" ]; then
+          awk -v ver="${{ steps.tag.outputs.TAG_NAME }}" '/^## \[/ { if (p) { exit }; if ($2 == ver) { p=1; next } } p && NF' CHANGELOG.md >> $GITHUB_OUTPUT
+        else
+          echo "No changelog available for this release." >> $GITHUB_OUTPUT
+        fi
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Release ${{ steps.tag.outputs.TAG_NAME }}
+        body: |
+          ## Changes
+          
+          ${{ steps.release_notes.outputs.CHANGELOG }}
+          
+          ## Installation
+          
+          ```bash
+          pip install mcp-documents-reader==${{ steps.tag.outputs.TAG_NAME }}
+          ```
+          
+          Or using uv:
+          
+          ```bash
+          uv pip install mcp-documents-reader==${{ steps.tag.outputs.TAG_NAME }}
+          ```
+        files: dist/*
+        draft: false
+        prerelease: false
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
