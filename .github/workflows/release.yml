@@ -70,8 +70,11 @@ jobs:
     - name: Build package
       run: uv build
 
+    - name: Install twine
+      run: uv pip install twine
+
     - name: Check distribution
-      run: uv run twine check --strict dist/*
+      run: twine check --strict dist/*
 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
