@@ -5,6 +5,9 @@
 # Document directory with test files
 /documents/
 
+# Scripts directory
+scripts/
+
 # Trae IDE configuration
 .trae/
 
