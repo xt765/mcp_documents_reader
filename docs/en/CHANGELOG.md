@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2025-03-10
+
+### Changed
+
+- **Flexible File Path Access**: Removed `DOCUMENT_DIRECTORY` restriction, now supports absolute and relative paths
+  - Removed `DOCUMENT_DIRECTORY` environment variable dependency
+  - Removed `AppContext` dataclass and `app_lifespan` function
+  - Removed `_get_document_path()` security function
+  - `read_document()` now directly uses `Path(filename)` for path handling
+- **Simplified Architecture**: Removed FastMCP lifespan configuration for cleaner code
+- **Test Suite Optimization**: Removed `test_lifespan.py`, updated `test_tools.py` with new path handling tests
+
+### Removed
+
+- `DOCUMENT_DIRECTORY` environment variable support
+- `AppContext` dataclass
+- `app_lifespan` async context manager
+- `_get_document_path()` helper function
+
 ## [1.2.1] - 2025-03-02
 
 ### Security Fixes

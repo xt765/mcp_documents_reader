@@ -167,7 +167,6 @@ test(readers): 添加 Excel 读取器边缘情况测试
 tests/
 ├── conftest.py           # 共享 fixtures
 ├── test_factory.py       # 工厂类测试
-├── test_lifespan.py      # 生命周期测试
 ├── test_readers.py       # 读取器测试
 └── test_tools.py         # MCP 工具测试
 ```

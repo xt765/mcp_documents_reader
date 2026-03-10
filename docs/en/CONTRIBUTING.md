@@ -167,7 +167,6 @@ test(readers): add edge case tests for Excel reader
 tests/
 ├── conftest.py           # Shared fixtures
 ├── test_factory.py       # Factory tests
-├── test_lifespan.py      # Lifecycle tests
 ├── test_readers.py       # Reader tests
 └── test_tools.py         # MCP tool tests
 ```

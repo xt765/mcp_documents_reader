@@ -5,6 +5,25 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.0] - 2025-03-10
+
+### 变更
+
+- **灵活的文件路径访问**：移除 `DOCUMENT_DIRECTORY` 限制，现支持绝对路径和相对路径
+  - 移除 `DOCUMENT_DIRECTORY` 环境变量依赖
+  - 移除 `AppContext` dataclass 和 `app_lifespan` 函数
+  - 移除 `_get_document_path()` 安全函数
+  - `read_document()` 现直接使用 `Path(filename)` 处理路径
+- **简化架构**：移除 FastMCP lifespan 配置，代码更简洁
+- **测试套件优化**：删除 `test_lifespan.py`，更新 `test_tools.py` 添加新路径处理测试
+
+### 移除
+
+- `DOCUMENT_DIRECTORY` 环境变量支持
+- `AppContext` dataclass
+- `app_lifespan` 异步上下文管理器
+- `_get_document_path()` 辅助函数
+
 ## [1.2.1] - 2025-03-02
 
 ### 安全修复
