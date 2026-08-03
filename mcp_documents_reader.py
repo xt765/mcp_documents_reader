@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from pathlib import Path
 
 from docx import Document as DocxDocument
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
 from openpyxl import load_workbook
 from pypdf import PdfReader as PyPdfReader
 from typing_extensions import override
