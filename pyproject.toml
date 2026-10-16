@@ -1,6 +1,6 @@
 [project]
 name = "mcp-documents-reader"
-version = "1.3.1"
+version = "1.4.0"
 description = "An MCP enabled multi-format document reader supporting DOCX, PDF, TXT, and Excel files"
 keywords = ["mcp", "model-context-protocol", "document-reader", "pdf", "docx", "excel"]
 authors = [
@@ -9,7 +9,7 @@ authors = [
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-  "mcp>=1.26.0",
+  "fastmcp>=2.0",
   "python-docx>=1.2.0",
   "pypdf>=6.8.0",
   "openpyxl>=3.1.5",
